@@ -1,0 +1,51 @@
+<!-- HEAD -->
+<div id="header-html" class="hidden-pdf">
+  <h2>{{ _("Fiscal Year") }} {{ name }}</h2>
+</div>
+
+    <h3>{{ account.account }}</h3>
+    <table>
+      <tr>
+        <th>{{ _("Date") }}</th>
+        <th style="text-align: right">{{ _("Debit") }}</th>
+        <th style="text-align: right">{{ _("Credit") }}</th>
+		<th style="text-align: right">{{ _("Saldo") }}</th>
+        <th>{{ _("Document") }}</th>
+        <th>{{ _("Remarks") }}</th>
+      </tr>
+      {% if account.report_type == "Balance Sheet" %}
+      <tr>
+        <td></td>
+        <td style="text-align: right">{{ "{:,.2f}".format(account.opening_debit).replace(",", "'") }}</td>
+        <td style="text-align: right">{{ "{:,.2f}".format(account.opening_credit).replace(",", "'") }}</td>
+        <td></td>
+        <td>{{ _("Opening") }}</td>
+      </tr>
+      {% endif %}
+	  <!-- all transactions -->
+	  {% for transaction in account.transactions  %}
+      <tr>
+        <td>{{ frappe.utils.get_datetime(transaction.posting_date).strftime('%d.%m.%Y') }}</td>
+        <td style="text-align: right">{{ "{:,.2f}".format(transaction.debit).replace(",", "'") }}</td>
+        <td style="text-align: right">{{ "{:,.2f}".format(transaction.credit).replace(",", "'") }}</td>
+        <td style="text-align: right">{{ "{:,.2f}".format(transaction.balance).replace(",", "'") }}</td>
+        <td>{{ transaction.voucher_no }}</td>
+        <td>{{ transaction.remarks }}</td>
+      </tr>
+      {% endfor %}
+      <!-- closing balance -->
+      <tr>
+        <td></td>
+        <td style="text-align: right">{{ "{:,.2f}".format(account.closing_debit).replace(",", "'") }}</td>
+        <td style="text-align: right">{{ "{:,.2f}".format(account.closing_credit).replace(",", "'") }}</td>
+        <td style="text-align: right">{{ "{:,.2f}".format(account.closing_balance).replace(",", "'") }}</td>
+        <td>{{ _("Closing") }}</td>
+      </tr>
+    </table>
+
+<!-- page footer -->
+<div id="footer-html" class="visible-pdf">
+  <p style="font-size: 6pt !important; text-align: right">
+    {{ _("Page") }} <span class="page"></span> {{ _("of") }} <span class="topage"></span>
+  </p>
+</div>
