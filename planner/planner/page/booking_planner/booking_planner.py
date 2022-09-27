@@ -1059,7 +1059,7 @@ def create_sales_order(apartment, customer, booking, start_date, end_date, guest
 		items = []
 		items.append(
 			{
-				"item_code": "Miete mt 7.7%",
+				"item_code": "Miete mt 7.7",
 				"qty": "1", 
 				"rate": apartment.price_per_month,
 				"delivery_date": delivery_date
@@ -1069,7 +1069,7 @@ def create_sales_order(apartment, customer, booking, start_date, end_date, guest
 			anz_monate += 1
 			items.append(
 				{
-					"item_code": "Miete mt 7.7%",
+					"item_code": "Miete mt 7.7",
 					"qty": "1", 
 					"rate": apartment.price_per_month,
 					"delivery_date": add_months(delivery_date, (anz_monate - 1))
@@ -1229,7 +1229,6 @@ def create_sales_order(apartment, customer, booking, start_date, end_date, guest
 				"taxes_and_charges": taxes
 			})
 
-	
 	
 	order.insert(ignore_permissions=True)
 	order.run_method("calculate_taxes_and_totals")
