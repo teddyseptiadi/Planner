@@ -39,7 +39,7 @@ def check_booking_orders(filters):
         
         if mietdauer >= tage_min and mietdauer <= tage_max:
             result = 'OK'
-            if int(filters.failed) != 1:
+            if filters.failed != 1:
                 _data = []
                 _data.append(booking.name)
                 _data.append(mietdauer)
