@@ -4,3 +4,4 @@
 *.swp
 tags
 planner/docs/current
+__pycache__
