@@ -1049,7 +1049,7 @@ def create_sales_order(apartment, customer, booking, start_date, end_date, guest
 			"guest": guest
 		})
 	
-	mietdauer = date_diff(end_date, start_date) + 1
+	mietdauer = date_diff(end_date, start_date)
 	#throw(str(apartment.name))
 	#_apartment = frappe.get_doc("Apartment", apartment.name)
 	
