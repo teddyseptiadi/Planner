@@ -87,9 +87,9 @@ function lade_daten(frm) {
 						var child = cur_frm.add_child('rechnungen');
 						frappe.model.set_value(child.doctype, child.name, 'rechnung', rechnungen[i].name);
 						frappe.model.set_value(child.doctype, child.name, 'due_date', rechnungen[i].due_date);
-						frappe.model.set_value(child.doctype, child.name, 'amount', rechnungen[i].grand_total);
+						frappe.model.set_value(child.doctype, child.name, 'amount', (rechnungen[i].rounded_total || rechnungen[i].grand_total));
 						cur_frm.refresh_field('rechnungen');
-						total += rechnungen[i].grand_total;
+						total += (rechnungen[i].rounded_total || rechnungen[i].grand_total);
 					}
 				} else {
 					cur_frm.set_value('rechnungen_print_hide', 1);
