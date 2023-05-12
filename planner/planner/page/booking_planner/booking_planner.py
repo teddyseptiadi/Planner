@@ -1186,7 +1186,7 @@ def create_sales_order(apartment, customer, booking, start_date, end_date, guest
 				folgemonat = add_months(start_monat, 1)
 				
 				
-			rest_tage = date_diff(end_date, start_monat)
+			rest_tage = date_diff(end_date, start_monat) + 1
 			if rest_tage > 0 and rest_tage < 20:
 				items.append(
 					{
