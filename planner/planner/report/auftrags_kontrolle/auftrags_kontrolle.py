@@ -32,7 +32,7 @@ def check_booking_orders(filters):
             for item in o.items:
                 if item.item_code == 'Miete 3.7 Tag':
                     tage += item.qty
-                elif item.item_code in ('Miete 3.7 Mt', 'Miete mt'):
+                elif item.item_code in ('Miete 3.7 Mt', 'Miete mt', 'Miete mt 7.7'):
                     monate += item.qty
         tage_max = (monate * 31) + tage
         tage_min = (monate * 30) + tage
