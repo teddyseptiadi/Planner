@@ -1273,7 +1273,7 @@ def create_periodic_sinvs(order):
             if item.delivery_date == _date:
                 # check new tax rates
                 item_tax = None
-                if _date >= datetime(2024, 1, 1):
+                if _date >= datetime(2024, 1, 1).date():
                     if item.item_tax_template == "MwSt 7.7":
                         item_tax = "MwSt 8.1"
                     if item.item_tax_template == "MwSt 3.7":
