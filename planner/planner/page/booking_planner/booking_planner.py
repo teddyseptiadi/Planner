@@ -1287,7 +1287,8 @@ def create_periodic_sinvs(order):
                         'sales_order': order.name,
                         'rate': item.rate,
                         'so_detail': item.name,
-                        'item_tax_template': item_tax or item.item_tax_template
+                        'item_tax_template': item_tax or item.item_tax_template,
+                        'uom': item.uom
                     }
                 )
         
