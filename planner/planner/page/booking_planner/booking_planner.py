@@ -848,13 +848,8 @@ def update_booking(apartment, end_date, start_date, booking_status, name, custom
 @frappe.whitelist()
 def create_booking(apartment, end_date, start_date, booking_status, customer='', is_checked=0, cleaning_team='', remark='', invoice_partner='', guest='', mv_terminated=0):
     planned_qry = frappe.db.sql("""SELECT `planned_until` FROM `tabAppartment` WHERE `name` = '{0}'""".format(apartment), as_dict=True)
-    if planned_qry[0]['planned_until'] == None:
-        planned_until = None
-    else:
-        planned_until = planned_qry[0]['planned_until'].strftime("%Y-%m-%d")
-    # ~ frappe.log_error(type(planned_until), "type")
-    # ~ frappe.log_error(planned_until, "planned_until")
-    if planned_until == None or start_date > planned_until:
+
+    if planned_qry[0]['planned_until'] == None or start_date > planned_qry[0]['planned_until'].strftime("%Y-%m-%d"):
         if booking_status == "Booked":
             if str(mv_terminated) == '1':
                 # block for creating autom. end-cleaning
