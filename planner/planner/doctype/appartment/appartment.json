@@ -22,6 +22,7 @@
   "service_price_per_month",
   "service_price_per_day",
   "cleaning_day",
+  "planned_until",
   "remarks",
   "special_apartment",
   "special_color",
@@ -170,10 +171,15 @@
    "fieldtype": "Data",
    "label": "Floor",
    "reqd": 1
+  },
+  {
+   "fieldname": "planned_until",
+   "fieldtype": "Date",
+   "label": "Planned until"
   }
  ],
- "modified": "2020-09-11 10:02:35.691369",
- "modified_by": "joel.mesmer@libracore.com",
+ "modified": "2023-10-09 14:40:04.982615",
+ "modified_by": "Administrator",
  "module": "Planner",
  "name": "Appartment",
  "owner": "Administrator",
