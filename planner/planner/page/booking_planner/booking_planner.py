@@ -849,7 +849,7 @@ def update_booking(apartment, end_date, start_date, booking_status, name, custom
 def create_booking(apartment, end_date, start_date, booking_status, customer='', is_checked=0, cleaning_team='', remark='', invoice_partner='', guest='', mv_terminated=0):
     planned_qry = frappe.db.sql("""SELECT `planned_until` FROM `tabAppartment` WHERE `name` = '{0}'""".format(apartment), as_dict=True)
     blocked = False
-    if booking_status = 'Service-Cleaning':
+    if booking_status == 'Service-Cleaning':
         if planned_qry[0]['planned_until'] == None or start_date > planned_qry[0]['planned_until'].strftime("%Y-%m-%d"):
             blocked = True
     if not blocked:
