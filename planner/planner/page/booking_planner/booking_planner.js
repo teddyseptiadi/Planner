@@ -301,7 +301,8 @@ frappe.booking_planner = {
 												end_date: frappe.datetime.add_days(document.getElementById("start_date").value, (i - 1)),
 												start_date: frappe.datetime.add_days(document.getElementById("start_date").value, (i - 1)),
 												booking_status: 'Service-Cleaning',
-												customer: frappe['default_cleanings'][i][y][1]
+												customer: frappe['default_cleanings'][i][y][1],
+                                                default_fixierung: 1
 											},
 											callback(r) {
 												
