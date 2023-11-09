@@ -9,19 +9,14 @@ def extend_and_submit_journal_entry(self, event):
 	#return if not auto-repeat
 	if not self.auto_repeat:
 		return
-	#get user-remark from origin document
-	origin = frappe.db.sql("""
-		SELECT `tabJournal Entry`.`user_remark`
-		FROM `tabAuto Repeat`
-		LEFT JOIN `tabJournal Entry` ON `tabAuto Repeat`.`reference_document` = `tabJournal Entry`.`name`
-		WHERE `tabJournal Entry`.`auto_repeat` = '{auto}'
-	""".format(auto=self.auto_repeat), as_dict=True)
+	#get name of origin document and user-remark from origin document
+	origin = frappe.db.get_value("Auto Repeat", {"Name": self.auto_repeat}, "reference_document")
+	remark = frappe.db.get_value("Journal Entry", {"Name": origin}, "user_remark")
 	
-	#update user-remark on actual document	
-	update_remark = frappe.db.sql("""UPDATE `tabJournal Entry` SET `user_remark` = '{remark}' WHERE `name` ='{name}'""".format(remark=origin[0]['user_remark'], name=self.name), as_list=True)
-	
-	#auto-submit document
+	#get, update, save and submit document
 	journal_entry = frappe.get_doc("Journal Entry", self.name)
+	journal_entry.user_remark = remark
+	journal_entry.save()
 	journal_entry.submit()
 
 	return
