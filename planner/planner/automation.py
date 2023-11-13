@@ -10,8 +10,8 @@ def extend_and_submit_journal_entry(self, event):
 	if not self.auto_repeat:
 		return
 	#get name of origin document and user-remark from origin document
-	origin = frappe.db.get_value("Auto Repeat", {"Name": self.auto_repeat}, "reference_document")
-	remark = frappe.db.get_value("Journal Entry", {"Name": origin}, "user_remark")
+	origin = frappe.db.get_value("Auto Repeat", self.auto_repeat, "reference_document")
+	remark = frappe.db.get_value("Journal Entry", origin, "user_remark")
 	
 	#get, update, save and submit document
 	journal_entry = frappe.get_doc("Journal Entry", self.name)
