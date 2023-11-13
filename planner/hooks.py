@@ -81,13 +81,11 @@ doctype_list_js = {"Sales Order" : "public/js/sales_order_list.js"}
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+ 	"Journal Entry": {
+ 		"after_insert": "planner.planner.automation.extend_and_submit_journal_entry"	
+	}
+}
 
 # Scheduled Tasks
 # ---------------
