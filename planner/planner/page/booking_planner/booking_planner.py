@@ -1070,7 +1070,7 @@ def create_sales_order(apartment, customer, booking, start_date, end_date, guest
         items = []
         items.append(
             {
-                "item_code": "Miete mt 7.7",
+                "item_code": "Miete mt 8.1",
                 "qty": "1", 
                 "rate": apartment.price_per_month,
                 "delivery_date": delivery_date
@@ -1080,7 +1080,7 @@ def create_sales_order(apartment, customer, booking, start_date, end_date, guest
             anz_monate += 1
             items.append(
                 {
-                    "item_code": "Miete mt 7.7",
+                    "item_code": "Miete mt 8.1",
                     "qty": "1", 
                     "rate": apartment.price_per_month,
                     "delivery_date": add_months(delivery_date, (anz_monate - 1))
@@ -1119,13 +1119,13 @@ def create_sales_order(apartment, customer, booking, start_date, end_date, guest
                         "delivery_date": delivery_date
                     },
                     {
-                        "item_code": "Miete 3.7 Tag",
+                        "item_code": "Miete 3.8 Tag",
                         "qty": miet_qty, 
                         "rate": mietpreis,
                         "delivery_date": delivery_date
                     },
                     {
-                        "item_code": "Service 3.7 Tag",
+                        "item_code": "Service 3.8 Tag",
                         "qty": miet_qty, 
                         "rate": mietservice,
                         "delivery_date": delivery_date
@@ -1160,16 +1160,16 @@ def create_sales_order(apartment, customer, booking, start_date, end_date, guest
             
             #definition ob dauer >= 3Monate oder < 3Monate
             if end_date <= add_months(start_date, 3):
-                monats_miete = 'Miete 3.7 Mt'
-                monats_service = 'Service 3.7 Mt'
-                tages_miete = 'Miete 3.7 Tag'
-                tages_service = 'Service 3.7 Tag'
+                monats_miete = 'Miete 3.8 Mt'
+                monats_service = 'Service 3.8 Mt'
+                tages_miete = 'Miete 3.8 Tag'
+                tages_service = 'Service 3.8 Tag'
                 taxes = 'Kleiner Gleich 3 Monate - AAS'
             else:
                 monats_miete = 'Miete mt'
-                monats_service = 'Service 7.7 Mt'
+                monats_service = 'Service 8.1 Mt'
                 tages_miete = 'Miete Tag'
-                tages_service = 'Service 7.7 Tag'
+                tages_service = 'Service 8.1 Tag'
                 taxes = 'Grösser 3 Monate - AAS'
             
             

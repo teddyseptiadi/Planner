@@ -9,7 +9,7 @@ frappe.pages['booking-planner'].on_page_load = function(wrapper) {
 	
     frappe.booking_planner.make(page);
 	frappe.booking_planner.run(page);
-    
+     
     // add the application reference
     frappe.breadcrumbs.add("Planner");	
 }
