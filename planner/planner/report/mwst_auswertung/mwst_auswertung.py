@@ -16,11 +16,11 @@ def get_columns(filters):
     return [
         {"label": _("Sales Invoice"), "fieldname": "sales_invoice", "fieldtype": "Link", "options": "Sales Invoice", "width": 85},
         {"label": _("Date"), "fieldname": "date", "fieldtype": "Date", "width": 90},
-        {"label": _("Item"), "fieldname": "item_code", "fieldtype": "Link", "options": "Item", "width": 90},
-        {"label": _("Account"), "fieldname": "account", "fieldtype": "Link", "options": "Account", "width": 150},
-        {"label": _("Net Amount"), "fieldname": "net_amount", "fieldtype": "Currency", "width": 150},
-        {"label": _("Tax Rate"), "fieldname": "tax_rate", "fieldtype": "Percent", "width": 150},
-        {"label": _("tax Amount"), "fieldname": "tax_amount", "fieldtype": "Currency", "width": 150}
+        {"label": _("Item"), "fieldname": "item_code", "fieldtype": "Link", "options": "Item", "width": 150},
+        {"label": _("Account"), "fieldname": "account", "fieldtype": "Link", "options": "Account", "width": 200},
+        {"label": _("Net Amount"), "fieldname": "net_amount", "fieldtype": "Currency", "width": 120},
+        {"label": _("Tax Rate"), "fieldname": "tax_rate", "fieldtype": "Percent", "width": 80},
+        {"label": _("Tax Amount"), "fieldname": "tax_amount", "fieldtype": "Currency", "width": 100}
     ]
 
 def get_data(filters):
@@ -46,7 +46,7 @@ def get_data(filters):
             tax_rate = 0
             for tk, tv in v.items():
                 if tv.get("tax_amount"):
-                    tax_amount = tv.get("tax_amount")
+                    tax_amount = rounded(tv.get("tax_amount"))
                     tax_rate = tv.get("tax_rate")
             data.append({
                 'sales_invoice':  doc.name,
