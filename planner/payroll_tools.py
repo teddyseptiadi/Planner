@@ -33,7 +33,7 @@ def korrektur_ma_stamm(employee=None, typ=None, ggz=None, fgz=None, payroll=None
 			employee = frappe.get_doc("Employee", ma.employee)
 			_gueltige_zuweisung = get_gueltige_zuweisung(ma.employee, payroll.start_date)
 			gueltige_zuweisung = frappe.get_doc("Salary Structure Assignment", _gueltige_zuweisung)
-			korrektur = gueltige_zuweisung.base / 12
+			korrektur = gueltige_zuweisung.grundlohn / 12
 			aktueller_stand = employee.zusatz_monatslohn
 			neuer_wert = aktueller_stand + korrektur
 			frappe.db.sql("""UPDATE `tabEmployee` SET `zusatz_monatslohn` = '{neuer_wert}' WHERE `name` = '{employee}'""".format(neuer_wert=neuer_wert, employee=employee.name), as_list=True)
@@ -45,12 +45,12 @@ def korrektur_ma_stamm(employee=None, typ=None, ggz=None, fgz=None, payroll=None
 			gueltige_zuweisung = frappe.get_doc("Salary Structure Assignment", _gueltige_zuweisung)
 			anz_std = get_total_std_von_sal_slip(ma.employee, payroll.name)
 			
-			korrektur_ggz = ((gueltige_zuweisung.base / (100 + gueltige_zuweisung.gzg + gueltige_zuweisung.fzg)) * gueltige_zuweisung.gzg) * anz_std
+			korrektur_ggz = ((gueltige_zuweisung.grundlohn / (100 + gueltige_zuweisung.gzg + gueltige_zuweisung.fzg)) * gueltige_zuweisung.gzg) * anz_std
 			aktueller_stand_ggz = employee.zusatz_monatslohn
 			neuer_wert_ggz = aktueller_stand_ggz + korrektur_ggz
 			frappe.db.sql("""UPDATE `tabEmployee` SET `zusatz_monatslohn` = '{neuer_wert_ggz}' WHERE `name` = '{employee}'""".format(neuer_wert_ggz=neuer_wert_ggz, employee=employee.name), as_list=True)
 			
-			korrektur_fgz = ((gueltige_zuweisung.base / (100 + gueltige_zuweisung.gzg + gueltige_zuweisung.fzg)) * gueltige_zuweisung.fzg) * anz_std
+			korrektur_fgz = ((gueltige_zuweisung.grundlohn / (100 + gueltige_zuweisung.gzg + gueltige_zuweisung.fzg)) * gueltige_zuweisung.fzg) * anz_std
 			aktueller_stand_fgz = employee.saldo_ferien_lohn
 			neuer_wert_fgz = aktueller_stand_fgz + korrektur_fgz
 			frappe.db.sql("""UPDATE `tabEmployee` SET `saldo_ferien_lohn` = '{neuer_wert_fgz}' WHERE `name` = '{employee}'""".format(neuer_wert_fgz=neuer_wert_fgz, employee=employee.name), as_list=True)
